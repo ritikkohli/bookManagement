@@ -2,7 +2,7 @@ const userModel = require('../models/userModel')
 const jwt = require("jsonwebtoken")
 const {validBody,validUserTitle,validName,validPhone,validMail,validPassword,validAddress} = require('../validator/validator.js')
 
-const createUser = async function (req,res) {
+const createUser = async function(req,res) {
     try{
         let data = req.body
         // ----- validation start -----------
@@ -30,7 +30,6 @@ const createUser = async function (req,res) {
             if(!validAddress(address)) return res.status(400).send({ status: false, message: "Please provide all valid field in address"})
         }
         // --------- End ------------
-        console.log(typeof address)
         let savedData = await userModel.create(data)
         res.status(201).send({status :true,message: 'Success', data : savedData})
     }
